@@ -120,10 +120,14 @@ router.get('/admin', function (req, res) {
     // console.log(repo.getAllSubscribers());
     let count = repo.getAllSubscribers();
     setTimeout(function(){
-        res.render('index.ejs', { count: count._rejectionHandler0[0].dataValues.count });
+        res.render('admin.ejs', { count: count._rejectionHandler0[0].dataValues.count });
         // console.log();
-    },2000);
-    
+    },2000);    
 });
+
+router.get('/admin/login',function(req,res){
+    res.render('login.ejs');
+});
+
 
 module.exports = router;
