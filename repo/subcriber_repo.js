@@ -42,20 +42,12 @@ module.exports = {
             }
         });
     },
+    
+    getAllSubscribers: function () {
+        return new Promise(function (resolve, reject) {
+            resolve(connection.getConnection.query('select count(id) as count from subscribers', { model: connection.getTable }));
+        });
 
-    // searchSubscriber: function (maskNo) {
-    //     return connection.getTable.findAll({
-    //         raw: true,
-    //         where: {
-    //             maskNo: maskNo
-    //         }
-    //     }).then(function (subscriber) {
-    //         // console.log(subscriber[0].pin);
-    //         return subscriber;
-    //     });
-    // }
-    getAllSubscribers: function() {
-        return connection.getConnection.query('select count(id) as count from subscribers', { model: connection.getTable });
     }
 };
 

@@ -24,46 +24,56 @@ const sequelize = new Sequelize('pointme', 'root', '1234', {
 /**
  * created the table "subscriber"
  */
-const Subscriber = sequelize.define('subscriber',{
+const Subscriber = sequelize.define('subscriber', {
     maskNo: {
-        type:Sequelize.STRING
+        type: Sequelize.STRING
     },
     mobileNo: {
-        type:Sequelize.STRING
+        type: Sequelize.STRING
     },
     pin: {
-        type:Sequelize.STRING
+        type: Sequelize.STRING
     },
     status: {
-        type:Sequelize.STRING
+        type: Sequelize.STRING
     }
 });
 
-// const User = sequelize.define('employee', {
-//     firstName: {
-//       type: Sequelize.STRING
-//     },
-//     lastName: {
-//       type: Sequelize.STRING
-//     }
-//   });
-  
-//   // force: true will drop the table if it already exists
-//   User.sync({force: true});
+/**
+ * create table logins to login admin page
+ */
+const Admin = sequelize.define('login', {
+    userName: {
+        type: Sequelize.STRING
+    },
+    password: {
+        type: Sequelize.STRING
+    }
+});
+
+/**
+ * added data to the logins
+ */
+
+Admin.create({
+    userName: 'admin',
+    password: '1234'
+});
 
 module.exports = {
-    getConnection : sequelize,
-    getTable : Subscriber
+    getConnection: sequelize,
+    getTable: Subscriber,
+    getLogIn: Admin
 };
 
 /**
  * to check the connection
  */
 sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
+    .authenticate()
+    .then(() => {
+        console.log('Connection has been established successfully.');
+    })
+    .catch(err => {
+        console.error('Unable to connect to the database:', err);
+    });
